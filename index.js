@@ -33,7 +33,7 @@ server.post("/webhook",(request, response)=>{
         
             if(webhook_event.message && webhook_event.message.text){
                 let text = webhook_event.message.text;
-                sendMessage(sender,"Echo: "+ text.substring(0,100));
+                sendMessage(sender,"Echo: "+text.substring(0,100));
                 
             }
             
@@ -53,18 +53,18 @@ server.post("/webhook",(request, response)=>{
 function sendMessage(sender, message){
   
     request({
-        url:"https://graph.facebook.com/2.6/me/messages",
-        qs: {access_token:token},
-        method: "POST",
-        json:{
-            recipient:{id:sender},
-            message:{text:message}
+        "uri":"https://graph.facebook.com/2.6/me/messages",
+        "qs": {"access_token":token},
+        "method": "POST",
+        "json":{
+            "recipient":{"id":sender},
+            "message":{"text":message}
         }
-    },(error,response)=>{
-        if(error){
-            console.log("Sending error");
-        }else if(response.body.error);{
-            console.log("This is from the response body "+response)
+    },(error,response,body)=>{
+        if(!error){
+            console.log("Message sent");
+        }else{
+            console.error("Unable to send message "+error);
         }
 
         }
