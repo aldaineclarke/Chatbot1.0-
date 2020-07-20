@@ -50,21 +50,21 @@ server.post("/webhook",(request, response)=>{
 
 });
 
-function sendMessage(sender, text){
-    let messageData = {text:text}
+function sendMessage(sender, message){
+  
     request({
         url:"https://graph.facebook.com/2.6/me/messages",
         qs: {access_token:token},
         method: "POST",
         json:{
             recipient:{id:sender},
-            message:messageData
+            message:{text:message}
         }
     },(error,response)=>{
         if(error){
             console.log("Sending error");
-        }else if(response.body.error){
-            console.log(error)
+        }else if(response.body.error);{
+            console.log("response body error")
         }
 
         }
