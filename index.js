@@ -42,7 +42,7 @@ server.post("/webhook",(request, response)=>{
 server.get('/webhook',(request, response)=>{
 
     // Your verify token. Should be a random String.
-    let VERIFY_TOKEN = "thisisatestingstring";
+    let VERIFY_TOKEN = MYAPPTOKEN;
 
     // Parse the query params
     
