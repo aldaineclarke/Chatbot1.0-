@@ -15,7 +15,9 @@ server.listen(port, ()=>{ console.log("Webhook is listening on port "+ port)});
 server.get('/',(request, response)=>{
     response.send("This is my webhook example;");
 });
-
+server.get('/webhook',(request, response)=>{
+    response.send("This is my webhook example get rqest;");
+});
 server.post("/webhook",(request, response)=>{
     let body = request.body; // post data from the request
 
