@@ -29,11 +29,12 @@ server.post("/webhook",(request, response)=>{
         body.entry.forEach(function(entry){
             // Gets the message. entry.messaging is an array but  will only ever contain one message, so we use index[0]
             let webhook_event = entry.messaging[0];
-            let sender = webhook_event.sender.id;
+            let sender_psid = webhook_event.sender.id;
         
             if(webhook_event.message && webhook_event.message.text){
                 let text = webhook_event.message.text;
-                sendMessage(sender,"Echo: "+text.substring(0,100));
+                console.log(text);
+                sendMessage(sender_psid,"Echo: "+text.substring(0,100));
                 
             }
             
@@ -50,14 +51,14 @@ server.post("/webhook",(request, response)=>{
 
 });
 
-function sendMessage(sender, message){
+function sendMessage(sender_psid, message){
   
     request({
         "uri":"https://graph.facebook.com/2.6/me/messages",
         "qs": {"access_token":token},
         "method": "POST",
         "json":{
-            "recipient":{"id":sender},
+            "recipient":{"id":sender_psid},
             "message":{"text":message}
         }
     },(error,response,body)=>{
