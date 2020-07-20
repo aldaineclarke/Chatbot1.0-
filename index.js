@@ -9,7 +9,7 @@ const server = express().use(bodyParser.json()); //creates an express http serve
 // passes the value of port number in the environment variable or port 5000
 const port = process.env.PORT || 5000;
 const MYAPPTOKEN = process.env.CHATTOKEN1;
-
+const token = process.env.PAGETOKEN;
 server.listen(port, ()=>{ console.log("Webhook is listening on port "+ port)});
 
 server.get('/',(request, response)=>{
@@ -54,7 +54,7 @@ function sendMessage(sender, text){
     let messageData = {text:text}
     request({
         url:"https://graph.facebook.com/2.6/me/messages",
-        qs: {access_token, token},
+        qs: {access_token:token},
         method: "POST",
         json:{
             reciept:{id:sender},
