@@ -64,7 +64,7 @@ function sendMessage(sender, message){
         if(error){
             console.log("Sending error");
         }else if(response.body.error);{
-            console.log("response body error")
+            console.log("This is from the response body "+response.body.error)
         }
 
         }
