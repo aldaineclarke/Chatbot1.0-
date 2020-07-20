@@ -63,6 +63,7 @@ function sendMessage(sender_psid, message){
         }
     },(error,response,body)=>{
         if(!error){
+            console.log(token);
             console.log("Message sent");
         }else{
             console.error("Unable to send message "+error);
