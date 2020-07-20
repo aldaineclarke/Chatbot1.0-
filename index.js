@@ -24,7 +24,7 @@ server.post("/webhook",(request, response)=>{
         body.entry.forEach(function(entry){
             // Gets the message. entry.messaging is an array but  will only ever contain one message, so we use index[0]
             let webhook_event = entry.messaging[0];
-            console.log("This is a test");
+            console.log(webhook_event);
         });
         // returns '200 OK' status code to all requests
         response.status(200).send('EVENT_RECIEVED');
