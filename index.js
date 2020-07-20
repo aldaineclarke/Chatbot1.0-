@@ -67,7 +67,7 @@ function sendMessage(sender, text){
 
         }
 
-    });
+    );
 
 }
 
