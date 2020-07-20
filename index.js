@@ -57,12 +57,12 @@ function sendMessage(sender, text){
         qs: {access_token:token},
         method: "POST",
         json:{
-            reciept:{id:sender},
+            recipient:{id:sender},
             message:messageData
         }
-    },(error,response,body)=>{
+    },(error,response)=>{
         if(error){
-            console.log("Sending message");
+            console.log("Sending error");
         }else if(response.body.error){
             console.log(error)
         }
