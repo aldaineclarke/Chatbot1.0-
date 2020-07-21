@@ -1,5 +1,14 @@
 "use strict"; // Tells the program to ensure that each variable is declared with var,let or const else an error will occur
+?
+/*
+    This just contains the basic chatbot feature nd only repeats what the user types
+    Prework 
+    create CATTOKEN1 environment variable with your app verification string
+    create PAGETOKEN environment variable with your page token id
+    
 
+
+*/
 const request = require("request");
 const express = require("express");
 const bodyParser = require("body-parser");
