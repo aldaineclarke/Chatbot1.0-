@@ -12,6 +12,7 @@ const MYAPPTOKEN = process.env.CHATTOKEN1;
 const token = process.env.PAGETOKEN;
 server.listen(port, ()=>{ console.log("Webhook is listening on port "+ port)});
 
+/* ROUTES */
 server.get('/',(request, response)=>{
     response.send("This is my webhook example;");
 });
@@ -63,8 +64,34 @@ function handleMessage(sender_psid, received_message) {
   
       // Create the payload for a basic text message
       response = {
-        "text": `This is what you said: "${received_message.text}". Now send me an image!`
+        "text": `Echo: ${received_message.text}`
       }
+    }else if(received_message.attachments){
+        // Gey the URL of the message attachment
+        let attachment_url = received_message.attachments[0].payload_url;
+        response ={
+            "attachment": {
+                "type": "template",
+                "payload" : {
+                    "template_type":"generic",
+                    "elements":[{
+                        "title": "Is this the right Picture?",
+                        "subtitle": "Tap a button to answer.",
+                        "image_url": attachment_url,
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Yes!",
+                            "payload": "yes",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "No!",
+                            "payload": "no",
+                        }]
+                    }]
+                }
+            }
+        }
     }  
     
     // Sends the response message
